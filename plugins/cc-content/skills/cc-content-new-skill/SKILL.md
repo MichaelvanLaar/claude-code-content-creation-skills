@@ -1,5 +1,5 @@
 ---
-name: new-skill
+name: cc-content-new-skill
 description: >
   Use this skill when building a new content-production skill for a specific output format.
   Invoke when the user says "create a new content skill", "build a skill for [format]",
@@ -39,7 +39,7 @@ ls .claude/skill-drafts/<format-name>/ 2>/dev/null && echo "found" || echo "miss
 
 > "No research files found at `.claude/skill-drafts/<format-name>/`.
 >
-> To get started, open `.claude/skills/_shared/content-skill-research-brief.md` — it
+> To get started, open `${CLAUDE_SKILL_DIR}/../_shared/content-skill-research-brief.md` — it
 > contains six copy-paste research prompts and a combined mega-prompt for your preferred
 > AI tool (Perplexity, Claude.ai, ChatGPT).
 >
@@ -60,14 +60,14 @@ not filename).
 Semantically assess the research files across six coverage areas. Match on meaning, not
 filenames — a single file from the combined mega-prompt may cover all six areas at once.
 
-| # | Coverage area                         | Maps to layer                              |
-| - | ------------------------------------- | ------------------------------------------ |
-| 1 | Universal structure                   | Layer 1 — hook, body, CTA, length, format  |
-| 2 | B2B vs. B2C differences               | Layer 2 — audience-specific variations     |
-| 3 | Content goal variations               | Layer 3 — goal axis                        |
-| 4 | Funnel stage adaptations (TOFU/MOFU/BOFU) | Layer 3 — funnel axis                  |
-| 5 | Audience expertise adaptations        | Layer 3 — expertise axis                   |
-| 6 | Psychological / persuasion principles | Layer 2 + 3 — Cialdini, biases, pre-suasion|
+| #   | Coverage area                             | Maps to layer                               |
+| --- | ----------------------------------------- | ------------------------------------------- |
+| 1   | Universal structure                       | Layer 1 — hook, body, CTA, length, format   |
+| 2   | B2B vs. B2C differences                   | Layer 2 — audience-specific variations      |
+| 3   | Content goal variations                   | Layer 3 — goal axis                         |
+| 4   | Funnel stage adaptations (TOFU/MOFU/BOFU) | Layer 3 — funnel axis                       |
+| 5   | Audience expertise adaptations            | Layer 3 — expertise axis                    |
+| 6   | Psychological / persuasion principles     | Layer 2 + 3 — Cialdini, biases, pre-suasion |
 
 Present a coverage summary like:
 
@@ -99,10 +99,14 @@ For each gap, ask once:
 
 ## Step 4: Synthesize format-guidelines.md
 
-Create the skill folder:
+Create the skill folder and copy shared reference files into the project if not already
+present:
 
 ```bash
 mkdir -p .claude/skills/<format-name>
+mkdir -p .claude/skills/_shared
+cp -n "${CLAUDE_SKILL_DIR}/../_shared/storytelling-frameworks.md" ".claude/skills/_shared/" 2>/dev/null
+cp -n "${CLAUDE_SKILL_DIR}/../_shared/persuasion-principles.md" ".claude/skills/_shared/" 2>/dev/null
 ```
 
 Write `.claude/skills/<format-name>/format-guidelines.md`. Base every claim on the research
@@ -165,6 +169,7 @@ calibration.
 
 A `- [ ]` checklist with format-specific quality gates derived from the research, plus
 these universal items:
+
 - Audience type, goal, and funnel stage inferences confirmed with user
 - Tone consistent with brand voice (if loaded)
 - CTA is singular and matches the stated goal
@@ -213,6 +218,7 @@ note "No campaign briefing found — generating from company context only." and 
 
 **Step 3 — Infer and confirm audience and goal**
 This is the content-production-specific step. Instruct the skill to:
+
 1. Read target-audience context and campaign brief (if any) to infer: B2B or B2C,
    content goal, funnel stage, and audience expertise level.
 2. Present a one-line inference summary to the user, for example:
@@ -269,6 +275,10 @@ Present a completion summary:
 Files written:
   .claude/skills/<format-name>/format-guidelines.md
   .claude/skills/<format-name>/SKILL.md
+
+Shared reference files (copied to project if not already present):
+  .claude/skills/_shared/storytelling-frameworks.md
+  .claude/skills/_shared/persuasion-principles.md
 ```
 
 If any areas were synthesized from general knowledge:
@@ -284,7 +294,7 @@ Then list suggested next steps:
 Next steps:
 1. Open SKILL.md and replace all [TODO: ...] markers with format-specific content.
 2. Review format-guidelines.md — especially any ⚠ KNOWLEDGE-BASED sections.
-3. Run /cc-content:onboarding in a target project to set up context files, then test the skill.
-4. When output looks good, save strong examples with /cc-content:samples-curation.
-5. When the skill is production-ready, add it to install.sh and update README.md.
+3. Run /cc-content:cc-content-onboarding in a target project to set up context files, then test the skill.
+4. When output looks good, save strong examples with /cc-content:cc-content-samples-curation.
+5. Wire the new skill file into your project's CLAUDE.md with an appropriate @-import and trigger phrase.
 ```

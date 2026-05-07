@@ -1,5 +1,5 @@
 ---
-name: onboarding
+name: cc-content-onboarding
 description: >
   Use this skill when setting up a new marketing project with Claude Code, populating
   company-level context files, or initializing the .claude/context/ folder.
@@ -281,7 +281,7 @@ each, give the title and a brief note on what it contributes."
 
 Write the file using the owner's descriptions.
 
-Note: `reference-samples` is managed by the `cc-content:samples-curation` skill. Do not create
+Note: `reference-samples` is managed by the `cc-content:cc-content-samples-curation` skill. Do not create
 it here.
 
 ## Step 6: Wire files into CLAUDE.md
@@ -355,5 +355,5 @@ CLAUDE.md               ✓ updated (or: ✓ created / ✗ skipped)
 
 Then say:
 
-> "Your marketing project context is ready. Skills like `cc-content:create-linkedin-post` will
+> "Your marketing project context is ready. Skills like `cc-content:cc-content-linkedin-post` will
 > automatically load these files via your CLAUDE.md when invoked."

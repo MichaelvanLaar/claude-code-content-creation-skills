@@ -1,0 +1,14 @@
+{
+  "name": "claude-code-content-creation-skills",
+  "owner": {
+    "name": "Michael van Laar"
+  },
+  "description": "Claude Code skills for marketing and content creation — onboarding, LinkedIn posts, samples curation, session wrap, and more",
+  "plugins": [
+    {
+      "name": "cc-content",
+      "source": "./plugins/cc-content",
+      "description": "Content creation skills: brand onboarding, LinkedIn posts, sample curation, session management"
+    }
+  ]
+}

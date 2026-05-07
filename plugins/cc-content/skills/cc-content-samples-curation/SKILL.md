@@ -1,5 +1,5 @@
 ---
-name: samples-curation
+name: cc-content-samples-curation
 description: >
   Use this skill when the owner wants to save a gold-standard content example,
   curate approved samples, add a reference post to the samples library, or

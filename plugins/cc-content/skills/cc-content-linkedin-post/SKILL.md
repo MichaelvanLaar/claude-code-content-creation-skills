@@ -1,5 +1,5 @@
 ---
-name: create-linkedin-post
+name: cc-content-linkedin-post
 description: >
   Use this skill when the owner wants to write, draft, or generate a LinkedIn post.
   Invoke when the user says "write a LinkedIn post", "draft a post for LinkedIn",
@@ -8,9 +8,9 @@ allowed-tools: Read, Write, Bash
 argument-hint: "[optional: path to campaign briefing file]"
 ---
 
-@.claude/skills/cc-content/create-linkedin-post/format-guidelines.md **Read when:** starting this skill
-@.claude/skills/_shared/storytelling-frameworks.md **Read when:** selecting a narrative framework in Step 3b
-@.claude/skills/_shared/persuasion-principles.md **Read when:** selecting persuasion principles in Step 3c
+@./format-guidelines.md **Read when:** starting this skill
+@../\_shared/storytelling-frameworks.md **Read when:** selecting a narrative framework in Step 3b
+@../\_shared/persuasion-principles.md **Read when:** selecting persuasion principles in Step 3c
 
 # LinkedIn Post Skill
 
@@ -72,16 +72,15 @@ Wait for the answer, then proceed.
 
 ## Step 3b: Select a storytelling framework
 
-Read `.claude/skills/_shared/storytelling-frameworks.md` and follow the selection
-process described there. Apply the chosen framework as the structural spine of
-the post.
+Read `../_shared/storytelling-frameworks.md` and follow the selection process described
+there. Apply the chosen framework as the structural spine of the post.
 
 ## Step 3c: Select persuasion principles
 
-Read `.claude/skills/_shared/persuasion-principles.md` and follow its selection
-process. Pick 1–3 principles that fit the post's goal and the reader's state,
-plus a pre-suasive opener strategy. Note the choice in working notes (e.g.,
-"Using **Authority + Social Proof**, opener primes credibility").
+Read `../_shared/persuasion-principles.md` and follow its selection process. Pick 1–3
+principles that fit the post's goal and the reader's state, plus a pre-suasive opener
+strategy. Note the choice in working notes (e.g., "Using **Authority + Social Proof**,
+opener primes credibility").
 
 ## Step 4: Generate the post
 
@@ -131,7 +130,7 @@ After presenting the post, ask:
   `.claude/learnings.md`:
 
   ```
-  [cc-content:create-linkedin-post] <correction summary> — <YYYY-MM-DD>
+  [cc-content:cc-content-linkedin-post] <correction summary> — <YYYY-MM-DD>
   ```
 
   Check whether `.claude/learnings.md` exists:

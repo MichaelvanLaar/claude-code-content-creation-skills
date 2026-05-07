@@ -1,25 +1,37 @@
-# Claude Code Skills: Marketing & Content Creation
+# Claude Code Content Creation Skills
 
-Reusable Claude Code skills for marketing and content creation projects.
-Install skills into a target project via `install.sh` or by copying skill
-folders manually.
+This repository distributes the `cc-content` Claude Code plugin — a suite of
+content creation skills for marketing projects.
 
-## Skills in this Repository
-
-| Skill                | File                                       | Purpose                                                    |
-| -------------------- | ------------------------------------------ | ---------------------------------------------------------- |
-| **onboarding**       | `.claude/skills/onboarding/SKILL.md`       | Populate `.claude/context/` via interview                  |
-| **linkedin-post**    | `.claude/skills/linkedin-post/SKILL.md`    | Draft LinkedIn posts                                       |
-| **marketing-update** | `.claude/skills/marketing-update/SKILL.md` | Update installed marketing skills to their latest versions |
-| **samples-curation** | `.claude/skills/samples-curation/SKILL.md` | Save and annotate gold-standard content examples           |
-| **session-wrap**     | `.claude/skills/session-wrap/SKILL.md`     | Review session, collect feedback, commit work              |
-
-## Structure
+## Plugin Structure
 
 ```
-.claude/skills/[skill-name]/SKILL.md   one directory per skill
-install.sh                              Distributes skills to target projects
+plugins/cc-content/
+├── .claude-plugin/
+│   └── plugin.json
+└── skills/
+    ├── _shared/                         shared reference files for skills
+    ├── cc-content-linkedin-post/
+    ├── cc-content-new-skill/
+    ├── cc-content-onboarding/
+    ├── cc-content-samples-curation/
+    ├── cc-content-session-wrap/
+    └── cc-content-update/
 ```
+
+Each skill lives in its own subdirectory containing a `SKILL.md` and any
+companion files (e.g., `format-guidelines.md`).
+
+## Skills
+
+| Skill                         | Purpose                                            |
+| ----------------------------- | -------------------------------------------------- |
+| `cc-content-onboarding`       | Populate `.claude/context/` via interview          |
+| `cc-content-linkedin-post`    | Draft LinkedIn posts                               |
+| `cc-content-samples-curation` | Save and annotate gold-standard content examples   |
+| `cc-content-session-wrap`     | Review session, collect feedback, commit work      |
+| `cc-content-update`           | Update plugin files to their latest versions       |
+| `cc-content-new-skill`        | Build a new content-production skill from research |
 
 ## Context Architecture
 
@@ -28,7 +40,7 @@ Marketing skills follow a three-level context architecture:
 | Level              | Location                                  | What goes here                                                                      |
 | ------------------ | ----------------------------------------- | ----------------------------------------------------------------------------------- |
 | **Company scope**  | `.claude/context/`                        | Brand voice, buyer personas, company profile — applies to all work for this company |
-| **Format scope**   | `.claude/skills/<skill-name>/`            | Structure rules, length limits, tone calibrations for one output type               |
+| **Format scope**   | Inside the plugin skill directory         | Structure rules, length limits, tone calibrations for one output type               |
 | **Campaign scope** | Project subfolders (e.g. `campaigns/q3/`) | Campaign briefings, key messages, one-off constraints                               |
 
 ### Hierarchical CLAUDE.md Pattern
@@ -41,13 +53,10 @@ automatically inherits all relevant context.
 my-marketing-project/
 ├── CLAUDE.md                   ← @-imports all .claude/context/ files
 ├── .claude/
-│   ├── context/
-│   │   ├── company-profile.md
-│   │   ├── brand-voice.md
-│   │   └── buyer-personas.md
-│   └── skills/
-│       └── linkedin-post/
-│           └── SKILL.md
+│   └── context/
+│       ├── company-profile.md
+│       ├── brand-voice.md
+│       └── buyer-personas.md
 └── campaigns/
     └── q3-product-launch/
         ├── CLAUDE.md           ← @-imports campaign-specific files

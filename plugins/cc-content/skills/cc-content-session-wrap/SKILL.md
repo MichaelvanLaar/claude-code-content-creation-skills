@@ -1,5 +1,5 @@
 ---
-name: session-wrap
+name: cc-content-session-wrap
 description: >
   Use this skill at the end of a content creation session to review deliverables,
   collect feedback, detect recurring correction patterns, and create a git commit.
@@ -58,7 +58,7 @@ the labelled format so the owner sees what type of work was done.
 Ask:
 
 > "Which output-format skills did you use during this session?
-> (Examples: cc-content:create-linkedin-post, other skills you may have invoked.
+> (Examples: cc-content:cc-content-linkedin-post, other skills you may have invoked.
 > You can list multiple, or say 'none'.)"
 
 Wait for the response.
@@ -162,9 +162,10 @@ Handle responses:
 
 Ask: "How should I phrase the rule? (Or describe the correction and I'll draft it.)"
 
-Determine the skill's format guidelines path. For `cc-content:create-linkedin-post`, that is
-`.claude/skills/cc-content/create-linkedin-post/format-guidelines.md`. For other skills, look
-for a `format-guidelines.md` inside the skill's directory under `.claude/skills/cc-content/`.
+Determine the skill's format guidelines path. For `cc-content:cc-content-linkedin-post`,
+the format guidelines file is at `${CLAUDE_SKILL_DIR}/../cc-content-linkedin-post/format-guidelines.md`
+(relative to this skill's directory). For other skills, look for a `format-guidelines.md`
+inside the skill's directory.
 
 Read the file, then append the new rule under an appropriate existing section or
 create a new `## Promoted Rules` section at the bottom.
@@ -264,4 +265,4 @@ Committed:               <hash> (or "not committed")
 
 Then say:
 
-> "Session wrapped. Run `/cc-content:session-wrap` again at the end of your next session."
+> "Session wrapped. Run `/cc-content:cc-content-session-wrap` again at the end of your next session."
