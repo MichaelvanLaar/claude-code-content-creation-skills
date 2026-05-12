@@ -54,14 +54,16 @@ ls .claude/skill-drafts/<format-name>/ 2>/dev/null && echo "found" || echo "miss
 
 **If missing or empty:** respond with the following and stop:
 
-> "No research files found at `.claude/skill-drafts/<format-name>/`.
+> "No research files found at `.claude/skill-drafts/<format-name>/` (your consuming project's
+> local `.claude/` folder, not a folder inside the plugin repository).
 >
 > To get started, open `${CLAUDE_SKILL_DIR}/../_shared/content-skill-research-brief.md` — it
 > contains six copy-paste research prompts and a combined mega-prompt for your preferred
 > AI tool (Perplexity, Claude.ai, ChatGPT).
 >
 > Save each research response as a `.md` file under `.claude/skill-drafts/<format-name>/`,
-> then invoke this skill again."
+> then invoke this skill again. If you were running in plugin-dev mode, remember to include
+> `--plugin` again."
 
 **If found:** list the files and read all of them:
 
@@ -378,7 +380,7 @@ Next steps:
 Next steps:
 1. Open SKILL.md and replace all [TODO: ...] markers with format-specific content.
 2. Review format-guidelines.md — especially any ⚠ KNOWLEDGE-BASED sections.
-3. Add the skill to marketplace.json if it's a new plugin entry.
+3. Add the skill to `.claude-plugin/marketplace.json` if it's a new plugin entry.
 4. Test the skill in a target project: run /cc-content:cc-content-onboarding there, then invoke your new skill.
 5. When output looks good, save strong examples with /cc-content:cc-content-samples-curation.
 ```

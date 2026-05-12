@@ -19,8 +19,9 @@ and for contributors adding a pre-built skill to the plugin.
 3. Save each response as a `.md` file in `.claude/skill-drafts/<skill-name>/`
    (one file per pass, or a single combined file — the skill reads all `.md` files
    in that folder).
-4. When research is complete (or complete enough), run `/new-content-skill <format-name>`
-   in Claude Code. The skill checks coverage, flags any gaps, and synthesizes the files.
+4. When research is complete (or complete enough), run `/cc-content:cc-content-new-skill <format-name>`
+   in Claude Code (add `--plugin` if you're creating a skill for the plugin repository).
+   The skill checks coverage, flags any gaps, and synthesizes the files.
 
 ---
 
